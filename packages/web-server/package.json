@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "dev": "vite serve"
     },
     "keywords": [],
     "author": "",
@@ -12,5 +12,10 @@
     "devDependencies": {
         "@vitejs/plugin-vue": "^2.3.3",
         "vite": "^2.9.13"
+    },
+    "dependencies": {
+        "pinia": "^2.0.14",
+        "vue": "^3.2.37",
+        "vue-router": "^4.1.1"
     }
 }
