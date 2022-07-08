@@ -1,0 +1,23 @@
+{
+  "name": "icon-solution",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "changelog": "conventional-changelog -p custom-config  -i CHANGELOG.md  -s -r 0 -n ./changelog.config.js",
+    "log": "pnpm run changelog",
+    "prepare": "husky install"
+  },
+  "keywords": [],
+  "author": "alqmc",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^9.1.2",
+    "conventional-changelog-cli": "^2.0.34",
+    "conventional-changelog-custom-config": "^0.3.1",
+    "cz-conventional-changelog": "^3.2.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.0"
+  }
+}
