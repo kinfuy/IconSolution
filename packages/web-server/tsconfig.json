@@ -12,7 +12,11 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
-    "declaration": true
+    "declaration": true,
+    "paths": {
+      "@apis*": ["./src/apis/*"],
+      "@views*": ["./src/views/*"]
+    }
   },
   "include": ["src/**/*", "typings"],
   "exclude": ["node_modules"]

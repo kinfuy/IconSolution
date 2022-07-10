@@ -1,13 +1,25 @@
+import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import { resolve } from 'path';
 export default defineConfig({
   base: '/',
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
-      '@view': resolve(__dirname, 'src/view')
-    }
+      '@views': resolve(__dirname, 'src/views'),
+      '@apis': resolve(__dirname, 'src/apis')
+    },
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue', '.less']
   },
-  plugins: [vue()]
+  plugins: [vue()],
+  server: {
+    host: 'localhost',
+    port: 3000,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:9000',
+        rewrite: path => path.replace(/^\/api/, ''),
+        secure: false
+      }
+    }
+  }
 });

@@ -1,9 +1,11 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
+
+import type { RouteRecordRaw } from 'vue-router';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Introduce',
-    component: () => import('@/views/Introduce.vue')
+    component: () => import('@views/Introduce.vue')
   }
 ];
 
