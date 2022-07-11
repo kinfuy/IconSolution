@@ -1,4 +1,4 @@
-const os = require('os');
+import os from 'os';
 /**
  * Get ip(v4) address
  * @return {String} the ipv4 address or 'localhost'
@@ -7,7 +7,7 @@ export const getIPAddress = function () {
   let netWorkList = os.networkInterfaces();
   let ip = '';
   for (let dev in netWorkList) {
-    netWorkList[dev].forEach((val: any) => {
+    netWorkList[dev]!.forEach((val: any) => {
       if (ip === '' && val.family === 'IPv4' && !val.internal) {
         ip = val.address;
         return;
@@ -157,7 +157,6 @@ export const encrypt = (str: string, pwd: string): string | null => {
   );
 
   const incr = Math.ceil(pwd.length / 2);
-  // eslint-disable-next-line no-restricted-properties
   const modu = Math.pow(2, 31) - 1;
   if (mult < 2) {
     console.log(
@@ -175,7 +174,6 @@ export const encrypt = (str: string, pwd: string): string | null => {
   let encChr: number;
   let encStr = '';
   for (let i = 0; i < str.length; i += 1) {
-    // eslint-disable-next-line no-bitwise
     encChr = parseInt((str.charCodeAt(i) ^ Math.floor((_prand / modu) * 255)).toString(), 10);
     if (encChr < 16) {
       encStr = `${encStr}0${encChr.toString(16)}`;
@@ -211,10 +209,8 @@ export const decrypt = (str: string, pwd: string): string | null => {
     10
   );
   const incr = Math.round(pwd.length / 2);
-  // eslint-disable-next-line no-restricted-properties
   const modu = Math.pow(2, 31) - 1;
   const salt = parseInt(str.substring(str.length - 8, str.length), 16);
-  // eslint-disable-next-line no-param-reassign
   str = str.substring(0, str.length - 8);
   prand += salt;
   while (prand.length > 10) {
@@ -224,7 +220,6 @@ export const decrypt = (str: string, pwd: string): string | null => {
   let encChr: number;
   let encStr = '';
   for (let i = 0; i < str.length; i += 2) {
-    // eslint-disable-next-line no-bitwise
     encChr = parseInt((parseInt(str.substring(i, i + 2), 16) ^ Math.floor((_prand / modu) * 255)).toString(), 10);
     encStr += String.fromCharCode(encChr);
     _prand = (mult * _prand + incr) % modu;
