@@ -6,11 +6,14 @@ import { port, host } from './../config/index';
 import KoaError from './middleware/error';
 import Router from './routes';
 import Session from 'koa-session';
+import { dbStart } from './database';
 const app = new Koa();
 // 错误处理
 app.use(KoaError);
 // 跨域
 app.use(cors());
+
+dbStart();
 
 //设置session
 app.keys = ['icon-solution'];

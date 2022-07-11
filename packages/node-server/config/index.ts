@@ -3,9 +3,11 @@ export const port = '9000';
 // export const host = getIPAddress();
 export const host = 'localhost';
 export const dbConfig = {
+  type: 'mysql',
   host: 'localhost',
-  user: 'root',
+  port: 3306,
+  username: 'root',
   password: '19980518',
   database: 'iconServer',
-  dateStrings: true,
+  synchronize: true,
 };
