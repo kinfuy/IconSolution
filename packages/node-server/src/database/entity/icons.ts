@@ -15,8 +15,8 @@ export class Icons {
   description: string;
 
   @Column()
-  createTime: string;
+  createTime: Date;
 
   @Column()
-  updateTime: string;
+  updateTime: Date;
 }

@@ -9,10 +9,10 @@ export class Task {
   type: string;
 
   @Column()
-  createTime: string;
+  createTime: Date;
 
   @Column()
-  updateTime: string;
+  updateTime: Date;
 
   @Column()
   status: string;

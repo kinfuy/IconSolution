@@ -18,8 +18,8 @@ export class User {
   token: string;
 
   @Column()
-  createTime: string;
+  createTime: Date;
 
   @Column()
-  updateTime: string;
+  updateTime: Date;
 }

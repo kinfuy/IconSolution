@@ -2,9 +2,13 @@
   <div class="Introduce" @click="buildServer">打包</div>
 </template>
 <script lang="ts" setup>
-import { buildGenerateApi } from '@apis/common';
+import { createGenerateApi } from '@apis/common';
 const buildServer = () => {
-  buildGenerateApi().then(res => {
+  createGenerateApi({
+    name: 'test-icon',
+    svgs: [],
+    version: '1.0.0'
+  }).then(res => {
     console.log('log=>Introduce=>8:res:%o', res);
   });
 };

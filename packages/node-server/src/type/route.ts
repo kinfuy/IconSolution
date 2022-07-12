@@ -6,10 +6,10 @@ export interface RuleItem {
   require?: boolean;
   /**
    * 自定义验证规则
-   * @param 请求参数
+   * @param value 请求参数
    * @param callback 回调函数
    */
-  validator?: (value: any, callback: Function) => void;
+  validator?: (value: any) => Promise<unknown>;
   errorMsg: string;
 }
 export interface RouteDecoratorConfig {

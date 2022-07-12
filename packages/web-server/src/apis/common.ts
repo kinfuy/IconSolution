@@ -5,7 +5,11 @@ export interface ResponseOption {
   data: string | number | object | Array<any>;
 }
 
-const buildGenerateApi = <T>(data?: T): Promise<ResponseOption> => {
-  return request.post('/build/pkg', data);
+const buildGenerateApi = (data?: any): Promise<ResponseOption> => {
+  return request.post('/pkg/build', data);
 };
-export { buildGenerateApi };
+
+const createGenerateApi = (data?: any): Promise<ResponseOption> => {
+  return request.post('/pkg/create', data);
+};
+export { buildGenerateApi, createGenerateApi };

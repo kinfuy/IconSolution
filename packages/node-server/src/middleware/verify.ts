@@ -9,10 +9,10 @@ import { RESPONSE_CODE } from '../libs/enum';
 export const Verify = async (ctx: Koa.Context, next: Koa.Next) => {
   const { paramVerify } = ctx.state.routerConfig as RouterConfig;
   let parameter: any | undefined = undefined;
-  if (ctx.method === 'GET' || ctx.method === 'get') {
+  if (['GET', 'get'].includes(ctx.method)) {
     parameter = ctx.request.query;
   }
-  if (ctx.method === 'POST' || ctx.method === 'post') {
+  if (['POST', 'post'].includes(ctx.method)) {
     parameter = ctx.request.body;
   }
   // 先校验空
@@ -22,13 +22,14 @@ export const Verify = async (ctx: Koa.Context, next: Koa.Next) => {
     }
   });
   // 后校验自定义验证规则
-  paramVerify.forEach((x) => {
-    if (x.validator && typeOf(x.validator) === 'function') {
-      x.validator(parameter, (errorMsg?: string) => {
-        if (errorMsg) throw new GeneralError(RESPONSE_CODE.ERROR_PARAM, errorMsg);
+  for (const verify of paramVerify) {
+    if (verify.validator && typeOf(verify.validator) === 'function') {
+      await verify.validator(parameter).catch((err) => {
+        throw new GeneralError(RESPONSE_CODE.ERROR_PARAM, err);
       });
     }
-  });
+  }
+  ctx.state.parameter = parameter;
   await next().catch((err) => {
     throw new GeneralError(err.errCode || err.code, err.errMsg || err.message);
   });

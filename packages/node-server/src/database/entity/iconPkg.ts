@@ -5,7 +5,10 @@ export class iconPkg {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({
+    length: 50,
+    type: 'varchar',
+  })
   name: string;
 
   @Column()
@@ -41,9 +44,11 @@ export class iconPkg {
   @Column()
   gitToken: string; // 代码仓库地址
 
-  @Column()
-  createTime: string;
+  @Column({ default: new Date() })
+  createTime: Date;
 
-  @Column()
-  updateTime: string;
+  @Column({
+    default: new Date(),
+  })
+  updateTime: Date;
 }
