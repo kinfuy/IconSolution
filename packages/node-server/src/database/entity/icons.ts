@@ -1,10 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Column, Entity } from 'typeorm';
+import { BaseEntity } from './base';
 
 @Entity()
-export class Icons {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Icons extends BaseEntity {
   @Column()
   name: string;
 
@@ -13,10 +11,4 @@ export class Icons {
 
   @Column()
   description: string;
-
-  @Column()
-  createTime: Date;
-
-  @Column()
-  updateTime: Date;
 }

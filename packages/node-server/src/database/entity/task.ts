@@ -1,18 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Column, Entity } from 'typeorm';
+import { BaseEntity } from './base';
 
 @Entity()
-export class Task {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Task extends BaseEntity {
   @Column()
   type: string;
-
-  @Column()
-  createTime: Date;
-
-  @Column()
-  updateTime: Date;
 
   @Column()
   status: string;

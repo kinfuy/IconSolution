@@ -1,7 +1,7 @@
 import { RouteDecoratorConfig } from '../../type/route';
-import { buildIconLibs, createIconLibs } from '../../database/controller/build';
+import { buildIconLibs, createIconLibs } from '../../controller/build';
 const prefix = '/pkg';
-const service: Array<RouteDecoratorConfig> = [
+const routes: Array<RouteDecoratorConfig> = [
   {
     routerPath: '/build',
     method: 'post',
@@ -45,7 +45,7 @@ const service: Array<RouteDecoratorConfig> = [
     controller: createIconLibs,
   },
 ];
-export const BuildService = {
+export const BuildRouter = {
   prefix: prefix,
-  routes: service,
+  routes: routes,
 };

@@ -1,10 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-
+import { Column, Entity } from 'typeorm';
+import { BaseEntity } from './base';
 @Entity()
-export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class User extends BaseEntity {
   @Column()
   name: string;
 
@@ -16,10 +13,4 @@ export class User {
 
   @Column()
   token: string;
-
-  @Column()
-  createTime: Date;
-
-  @Column()
-  updateTime: Date;
 }

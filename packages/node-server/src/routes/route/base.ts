@@ -1,7 +1,6 @@
-import { RESPONSE_CODE } from '../../libs/enum';
 import { RouteDecoratorConfig } from '../../type/route';
 const prefix = '/';
-const service: Array<RouteDecoratorConfig> = [
+const routes: Array<RouteDecoratorConfig> = [
   {
     routerPath: '/login',
     method: 'post',
@@ -10,7 +9,7 @@ const service: Array<RouteDecoratorConfig> = [
     },
   },
 ];
-export const BaseService = {
+export const BaseRouter = {
   prefix: prefix,
-  routes: service,
+  routes: routes,
 };

@@ -1,10 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Column, Entity } from 'typeorm';
+import { BaseEntity } from './base';
 
 @Entity()
-export class iconPkg {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class iconPkg extends BaseEntity {
   @Column({
     length: 50,
     type: 'varchar',
@@ -14,10 +12,10 @@ export class iconPkg {
   @Column()
   version: string;
 
-  @Column()
+  @Column({ nullable: true })
   description: string;
 
-  @Column()
+  @Column({ nullable: true })
   keywords: string; // 逗号分割
 
   @Column()
@@ -26,29 +24,21 @@ export class iconPkg {
   @Column()
   license: string;
 
-  @Column()
+  @Column({ nullable: true, default: 'vue' })
   frame: string; // vue react angular
 
-  @Column()
-  unplugin: string;
+  @Column({ nullable: true })
+  generate_path: string; // 打包后地址
 
   @Column()
-  publishPath: string;
+  publish_path: string;
 
   @Column()
-  publishToken: string; // npm token
+  publish_token: string; // npm token
 
   @Column()
-  gitPath: string; // 代码仓库地址
+  git_path: string; // 代码仓库地址
 
   @Column()
-  gitToken: string; // 代码仓库地址
-
-  @Column({ default: new Date() })
-  createTime: Date;
-
-  @Column({
-    default: new Date(),
-  })
-  updateTime: Date;
+  git_token: string; // 代码仓库地址
 }

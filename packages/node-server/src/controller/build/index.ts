@@ -1,10 +1,10 @@
 import { emptyDir } from 'fs-extra';
 import Koa from 'koa';
-import { outputPath, svgLibPath, outputComponentSPath } from '../../../../config/path';
-import { RESPONSE_CODE } from '../../../libs/enum';
+import { outputPath, svgLibPath, outputComponentSPath } from '../../../config/path';
+import { RESPONSE_CODE } from '../../libs/enum';
 import { generateEntry, generateGlobalType, getSvgFiles, transformToVueComponent } from './build';
-import { AppDataSource } from '../../index';
-import { iconPkg } from '../../entity';
+import { IconPkgService } from '../../database/services/iconPkg';
+import { iconPkg } from '../../database/entity/iconPkg';
 
 export const buildIconLibs = async (ctx: Koa.Context) => {
   ctx.body = {
@@ -20,19 +20,9 @@ export const buildIconLibs = async (ctx: Koa.Context) => {
 
 export const createIconLibs = async (ctx: Koa.Context) => {
   const { name, version } = ctx.state.parameter;
-  const pkg = new iconPkg();
-  pkg.createTime = new Date();
-  pkg.author = 'test';
-  pkg.description = 'test lib';
-  pkg.frame = 'vue';
-  pkg.gitPath = 'test.git';
-  pkg.gitToken = 'sadasdasfasf';
-  pkg.keywords = 'icon,svg';
-  pkg.license = 'MIT';
-  pkg.name = name;
-  pkg.version = version;
-  console.log('log=>index=>34:pkg:%o', pkg);
-  await AppDataSource.manager.save(pkg);
+  const iconServe = new IconPkgService();
+  const find = await iconServe.find();
+  console.log('log=>index=>25:find:%o', find);
   ctx.body = {
     code: RESPONSE_CODE.SUCCESS,
     message: '打包成功',

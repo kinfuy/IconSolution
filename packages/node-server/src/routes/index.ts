@@ -1,13 +1,13 @@
 import Koa from 'koa';
 import koaRouter from 'koa-router';
 import { Verify } from './../middleware/verify';
-import { BaseService, BuildService } from './service';
+import { BaseRouter, BuildRouter } from './route';
 import { pretreatment } from './../middleware/preRouter';
 import { Auth } from '../middleware/auth';
 const router = new koaRouter();
-const routers = [BaseService, BuildService];
+const routers = [BaseRouter, BuildRouter];
 
-class BaseRouter {
+class Router {
   private router: koaRouter<any, {}>;
   private app: Koa;
   constructor(app: Koa) {
@@ -39,4 +39,4 @@ class BaseRouter {
     this.app.use(this.router.routes()).use(this.router.allowedMethods());
   }
 }
-export default BaseRouter;
+export default Router;
