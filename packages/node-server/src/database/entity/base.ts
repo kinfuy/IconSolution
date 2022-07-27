@@ -13,7 +13,7 @@ export class BaseEntity {
   create_date: Date | null;
 
   @Column('timestamp', {
-    name: 'create_date',
+    name: 'update_date',
     nullable: true,
     default: () => 'CURRENT_TIMESTAMP',
   })

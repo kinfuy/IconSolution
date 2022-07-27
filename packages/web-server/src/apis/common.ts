@@ -12,4 +12,8 @@ const buildGenerateApi = (data?: any): Promise<ResponseOption> => {
 const createGenerateApi = (data?: any): Promise<ResponseOption> => {
   return request.post('/pkg/create', data);
 };
-export { buildGenerateApi, createGenerateApi };
+
+const createIconApi = (data?: any): Promise<ResponseOption> => {
+  return request.post('/icon/create', data);
+};
+export { buildGenerateApi, createGenerateApi, createIconApi };

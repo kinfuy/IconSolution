@@ -23,7 +23,7 @@ export default async (ctx: Koa.Context, next: Koa.Next) => {
       ctx.status = 200;
       ctx.body = {
         code: err.errCode,
-        message: err.errMsg,
+        message: err.errMsg || err.message,
       };
     } else {
       ctx.status = err.status || 500;

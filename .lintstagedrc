@@ -1,1 +1,8 @@
-{}
+{
+    "packages/**/*.{css,less}": [
+        "stylelint --config ./.stylelintrc --fix"
+    ],
+    "packages/**/*.{js,ts,css,vue}": [
+        "eslint -c ./.eslintrc.js --fix --ext .jsx,.js,.tsx,.ts,.vue"
+    ]
+}

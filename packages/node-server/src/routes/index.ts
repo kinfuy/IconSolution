@@ -1,11 +1,11 @@
 import Koa from 'koa';
 import koaRouter from 'koa-router';
 import { Verify } from './../middleware/verify';
-import { BaseRouter, BuildRouter } from './route';
+import { BaseRouter, PackageRouter, IconRouter } from './route';
 import { pretreatment } from './../middleware/preRouter';
 import { Auth } from '../middleware/auth';
 const router = new koaRouter();
-const routers = [BaseRouter, BuildRouter];
+const routers = [BaseRouter, PackageRouter, IconRouter];
 
 class Router {
   private router: koaRouter<any, {}>;
