@@ -3,8 +3,7 @@ import Koa from 'koa';
 import { outputPath, svgLibPath, outputComponentSPath } from '../../../config/path';
 import { RESPONSE_CODE } from '../../libs/enum';
 import { generateEntry, generateGlobalType, getSvgFiles, transformToVueComponent } from './build';
-import { IconPkgService } from '../../database/services/iconPkg';
-import { iconPkg } from '../../database/entity/iconPkg';
+import { IconPkgService } from '../../database/services';
 
 export const buildIconLibs = async (ctx: Koa.Context) => {
   ctx.body = {

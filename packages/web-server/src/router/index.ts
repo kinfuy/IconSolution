@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
-
+//类型声明
 import type { RouteRecordRaw } from 'vue-router';
+//
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',

@@ -10,7 +10,7 @@ export const AppDataSource = new DataSource({
   password: '19980518',
   database: 'iconServer',
   entities: [iconPkg, Icons, User, Task],
-  synchronize: true,
+  synchronize: false,
   logging: false,
 });
 

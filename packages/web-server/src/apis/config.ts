@@ -29,7 +29,6 @@ instance.interceptors.request.use(
       const requestFlag = `${request.url}&${request.method}`;
       pending.push({ requestFlag, cancel });
     });
-
     return request;
   },
   error => {
