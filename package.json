@@ -7,7 +7,6 @@
     "web:dev": "pnpm run -C ./packages/web-server dev",
     "serve:dev": "pnpm run -C ./packages/node-server dev",
     "log": "changeloger",
-    "commit": "git-cz",
     "prepare": "husky install"
   },
   "keywords": [],
@@ -16,7 +15,7 @@
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
     "@commitlint/config-conventional": "^9.1.2",
-    "changeloger": "^0.0.5",
+    "changeloger": "^0.0.6",
     "husky": "^8.0.0",
     "lint-staged": "^13.0.0"
   }
