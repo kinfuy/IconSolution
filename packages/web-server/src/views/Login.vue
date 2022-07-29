@@ -1,5 +1,5 @@
 <template>
-  <el-button @click="visible = true"> 登录页面 </el-button>
+  <el-button @click="visible = true"> 登录页 </el-button>
   <el-dialog v-model="visible" :show-close="false">
     <template #header="{ titleId, titleClass, close }">
       <div class="my-header">
