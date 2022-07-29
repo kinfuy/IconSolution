@@ -1,0 +1,37 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "28923021",
+      "name": "蛋糕卷",
+      "font_class": "dangaojuan",
+      "unicode": "e6b5",
+      "unicode_decimal": 59061
+    },
+    {
+      "icon_id": "28983155",
+      "name": "班戟",
+      "font_class": "banji",
+      "unicode": "e6b9",
+      "unicode_decimal": 59065
+    },
+    {
+      "icon_id": "29262210",
+      "name": "葡萄酒",
+      "font_class": "putaojiu",
+      "unicode": "e6c0",
+      "unicode_decimal": 59072
+    },
+    {
+      "icon_id": "29594938",
+      "name": "馒头",
+      "font_class": "mantou",
+      "unicode": "e6cb",
+      "unicode_decimal": 59083
+    }
+  ]
+}

@@ -23,6 +23,9 @@
         <div class="icon-person">
           <router-link to="/homepage">个人主页</router-link>
         </div>
+        <div class="icon-login">
+          <router-link to="/login">登录</router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -39,7 +42,7 @@ export default {
   position: relative;
   width: 100%;
   height: 55px;
-  background-color: rgba(0, 0, 0, 0.2);
+  // background-color: rgba(0, 0, 0, 0.2);
   .icon-navbar {
     position: absolute;
     width: 80%;
@@ -75,7 +78,7 @@ export default {
         .icon-title {
           font-size: 20px;
           font-weight: 700;
-          color: antiquewhite;
+          color: #f67504;
         }
       }
       .icon-item {
@@ -87,7 +90,7 @@ export default {
           margin: 0 30px;
           a {
             text-decoration: none;
-            color: #fff;
+            color: black;
           }
         }
       }
@@ -104,10 +107,12 @@ export default {
           vertical-align: middle;
         }
       }
-      .icon-person {
+      .icon-person,
+      .icon-login {
+        margin: 0 45px 0 0;
         a {
           text-decoration: none;
-          color: #fff;
+          color: black;
         }
       }
     }
