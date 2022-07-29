@@ -3,13 +3,13 @@
     Open Dialog with customized header
   </el-button>
   <el-dialog v-model="visible" :show-close="false">
-    <template #header="{ titleId, titleClass }">
+    <template #header="{ titleId, titleClass, close }">
       <div class="my-header">
         <h4 :id="titleId" :class="titleClass">登入</h4>
-        <!-- <el-button type="danger" @click="close">
+        <el-button type="danger" @click="close">
           <el-icon class="el-icon--left" />
           Close
-        </el-button> -->
+        </el-button>
       </div>
     </template>
     <div class="icon-con">
