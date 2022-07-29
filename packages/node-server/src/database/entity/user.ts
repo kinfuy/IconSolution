@@ -9,6 +9,9 @@ export class User extends BaseEntity {
   email: string;
 
   @Column()
+  avator: string;
+
+  @Column()
   description: string;
 
   @Column()

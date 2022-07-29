@@ -18,14 +18,14 @@ export const getName = (file: string) => {
 export const formatCode = (code: string, parser: BuiltInParserName = 'typescript') =>
   format(code, {
     parser,
-    semi: false,
+    semi: true,
     singleQuote: true,
   });
 export const transformToVueComponent = async (file: string, outputLibPath: string) => {
   const content = await readFile(file, 'utf-8');
   const { filename, componentName } = getName(file);
   const vue = formatCode(
-    `<template>${content}</template><script lang="ts">import { defineComponent } from 'vue' export default defineComponent({ name: "${componentName}"}) </script>`,
+    `<template>${content}</template><script lang="ts">import { defineComponent } from 'vue'; export default defineComponent({ name: "${componentName}"}) </script>`,
     'vue'
   );
   await mkdir(outputLibPath).catch(() => {});

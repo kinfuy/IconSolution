@@ -8,6 +8,13 @@ const routes: Array<RouteDecoratorConfig> = [
       ctx.body = 'build';
     },
   },
+  {
+    routerPath: '/uploadfile',
+    method: 'post',
+    controller: (ctx) => {
+      ctx.body = 'ok';
+    },
+  },
 ];
 export const BaseRouter = {
   prefix: prefix,

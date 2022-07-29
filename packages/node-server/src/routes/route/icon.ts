@@ -1,6 +1,5 @@
 import { RouteDecoratorConfig } from '../../type/route';
 import { createIcon } from '../../controller/icon';
-import { resolve } from 'path';
 const prefix = '/icon';
 const routes: Array<RouteDecoratorConfig> = [
   {
