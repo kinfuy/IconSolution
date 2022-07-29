@@ -20,10 +20,4 @@
 //   });
 // };
 </script>
-<style lang="less" scoped>
-  .icon-g {
-    .icon-wrapper {
-      width: 100%;
-    }
-  }
-</style>
+<style lang="less" scoped></style>
