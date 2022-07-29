@@ -12,7 +12,13 @@
         </el-button> -->
       </div>
     </template>
-    <div class="icon-con">1</div>
+    <div class="icon-con">
+      <input type="text" placeholder="账户" />
+      <input type="password" placeholder="密码" />
+    </div>
+    <div class="icon-footer">
+      <div class="icon-log"><a href="#">登入</a></div>
+    </div>
   </el-dialog>
 </template>
 
