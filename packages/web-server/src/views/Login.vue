@@ -26,11 +26,3 @@ import { ElButton, ElDialog } from 'element-plus';
 
 const visible = ref(false);
 </script>
-
-<style scoped>
-.my-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-</style>
