@@ -1,7 +1,7 @@
 import request from './config';
 //🌸定义ResponseOption的规则，里面定义的规则在使用的时候必须有
 export interface ResponseOption {
-  status: number;
+  code: string;
   message: string;
   data: string | number | object | Array<any>;
 }
@@ -17,4 +17,18 @@ const createGenerateApi = (data?: any): Promise<ResponseOption> => {
 const createIconApi = (data?: any): Promise<ResponseOption> => {
   return request.post('/icon/create', data);
 };
-export { buildGenerateApi, createGenerateApi, createIconApi };
+// 请求验证码
+const reqGetCode = (data?: any): Promise<ResponseOption> => {
+  return request.post('/captcha', data);
+};
+// 请求注册
+const reqGetSignIn = (data?: any): Promise<ResponseOption> => {
+  return request.post('/register', data);
+};
+export {
+  buildGenerateApi,
+  createGenerateApi,
+  createIconApi,
+  reqGetCode,
+  reqGetSignIn
+};

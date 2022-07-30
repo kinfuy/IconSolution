@@ -18,13 +18,14 @@
       </div>
       <div class="icon-right common">
         <div class="icon-avatar">
-          <img src="/壁纸小狐狸.png" alt="" />
+          <!-- <img src="/壁纸小狐狸.png" alt="" /> -->
         </div>
         <div class="icon-person">
           <router-link to="/homepage">个人主页</router-link>
         </div>
         <div class="icon-login">
-          <router-link to="/login">登录</router-link>
+          <a @click="loginRef.show()">登录</a>
+          <Login ref="loginRef" />
         </div>
       </div>
     </div>
@@ -32,8 +33,17 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+import Login from './Login.vue';
 export default {
-  name: 'NavBar'
+  name: 'NavBar',
+  components: { Login },
+  setup() {
+    const loginRef = ref(null); //相当于拿到login组件，可以调用里面的方法
+    return {
+      loginRef
+    };
+  }
 };
 </script>
 
