@@ -14,6 +14,7 @@ export const createGenerateApi = (data?: any): Promise<ResponseOption> => {
   return request.post('/pkg/create', data);
 };
 
+
 export const createIconApi = (data?: any): Promise<ResponseOption> => {
   return request.post('/icon/create', data);
 };
@@ -24,4 +25,8 @@ export const reqGetCode = (data?: any): Promise<ResponseOption> => {
 // 请求注册
 export const reqGetSignIn = (data?: any): Promise<ResponseOption> => {
   return request.post('/register', data);
+};
+
+export const createIconApi = (data?: any): Promise<ResponseOption> => {
+  return request.post('/icon/create', data);
 };

@@ -79,6 +79,13 @@ const routes: Array<RouteDecoratorConfig> = [
       },
     ],
   },
+  {
+    routerPath: '/uploadfile',
+    method: 'post',
+    controller: (ctx) => {
+      ctx.body = 'ok';
+    },
+  },
 ];
 export const BaseRouter = {
   prefix,
