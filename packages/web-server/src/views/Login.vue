@@ -11,8 +11,8 @@
       </div>
     </template>
     <div class="icon-con">
-      <input type="text" placeholder="账户" />
-      <input type="password" placeholder="密码" />
+      <input class="icon-text" type="text" placeholder="账户" />
+      <input class="icon-password" type="password" placeholder="密码" />
     </div>
     <div class="icon-footer">
       <div class="icon-log"><a href="#">登入</a></div>
@@ -33,5 +33,11 @@ const visible = ref(false);
   flex-direction: row;
   justify-content: center;
 }
+.icon-con {
+  margin: 20px 0 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 </style>
->>>>>>> 766caf6dae6a3d1c67a0b90bda81c47c93c91f51
