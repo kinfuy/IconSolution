@@ -1,12 +1,9 @@
-
 import { EntityTarget } from "typeorm";
-import { Icons } from "../entity";
+import { User } from "../entity";
 import { BaseService } from "./base";
 
-
-export class IconService extends BaseService {
+export class UserService extends BaseService {
   constructor() {
-    super(Icons);
+    super(User);
   }
-
 }
