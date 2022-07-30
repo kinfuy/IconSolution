@@ -6,15 +6,14 @@ export interface ResponseOption {
   data: string | number | object | Array<any>;
 }
 //🌸data?代表data可传可不传，any是任意类型
-const buildGenerateApi = (data?: any): Promise<ResponseOption> => {
+export const buildGenerateApi = (data?: any): Promise<ResponseOption> => {
   return request.post('/pkg/build', data);
 };
 
-const createGenerateApi = (data?: any): Promise<ResponseOption> => {
+export const createGenerateApi = (data?: any): Promise<ResponseOption> => {
   return request.post('/pkg/create', data);
 };
 
-const createIconApi = (data?: any): Promise<ResponseOption> => {
+export const createIconApi = (data?: any): Promise<ResponseOption> => {
   return request.post('/icon/create', data);
 };
-export { buildGenerateApi, createGenerateApi, createIconApi };
