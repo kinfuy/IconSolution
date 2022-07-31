@@ -47,8 +47,8 @@ const routes: Array<RouteDecoratorConfig> = [
     paramVerify: [
       {
         require: true,
-        key: "username",
-        errorMsg: "username is required",
+        key: "email",
+        errorMsg: "email is required",
       },
       {
         key: "password",
@@ -80,10 +80,10 @@ const routes: Array<RouteDecoratorConfig> = [
     ],
   },
   {
-    routerPath: '/uploadfile',
-    method: 'post',
+    routerPath: "/uploadfile",
+    method: "post",
     controller: (ctx) => {
-      ctx.body = 'ok';
+      ctx.body = "ok";
     },
   },
 ];

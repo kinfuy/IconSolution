@@ -16,7 +16,6 @@ export class GeneralError extends Error {
  * 错误捕获
  */
 export default async (ctx: Koa.Context, next: Koa.Next) => {
-  console.log("有请求来了");
   try {
     await next();
   } catch (err: any) {
