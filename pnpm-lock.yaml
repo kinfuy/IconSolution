@@ -76,6 +76,7 @@ importers:
   packages/web-server:
     specifiers:
       '@alqmc/eslint-config': ^0.0.4
+      '@element-plus/icons-vue': ^2.0.6
       '@vitejs/plugin-vue': ^2.3.3
       axios: ^0.27.2
       element-plus: ^2.2.11
@@ -90,6 +91,7 @@ importers:
       vue: ^3.2.37
       vue-router: ^4.1.1
     dependencies:
+      '@element-plus/icons-vue': 2.0.6_vue@3.2.37
       axios: 0.27.2
       element-plus: 2.2.11_vue@3.2.37
       pinia: 2.0.17_j6bzmzd4ujpabbp5objtwxyjp4

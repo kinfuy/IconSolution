@@ -24,7 +24,7 @@ const CONFIG = {
 };
 app.use(Session(CONFIG, app));
 // 挂载公共静态资源
-app.use(koaStatic(`${__dirname}../public`));
+app.use(koaStatic(`${__dirname}/../public`));
 // 解析body
 app.use(
   koaBody({

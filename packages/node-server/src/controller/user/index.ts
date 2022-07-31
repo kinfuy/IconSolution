@@ -35,7 +35,7 @@ export const register = async (ctx: Koa.Context) => {
       name: "跳舞的小羊",
       email,
       password: md5Crypto(password),
-      avator: "/user/logo.png",
+      avator: "/user/default.png",
     });
     ctx.body = {
       code: RESPONSE_CODE.SUCCESS,

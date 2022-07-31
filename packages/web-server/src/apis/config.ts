@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { ElMessage } from 'element-plus';
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 const errorHandler = (errMessage: string) => {
-  console.log(errMessage);
+  ElMessage(errMessage);
 };
 const instance: AxiosInstance = axios.create({
   baseURL: '/api',
