@@ -3,7 +3,7 @@ import request from './config';
 export interface ResponseOption {
   code: string;
   message: string;
-  data: string | number | object | Array<any>;
+  data: any;
 }
 //🌸data?代表data可传可不传，any是任意类型
 export const buildGenerateApi = (data?: any): Promise<ResponseOption> => {

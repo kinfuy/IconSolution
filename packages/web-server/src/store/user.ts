@@ -1,13 +1,14 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 
-interface UserInfo {
+export interface UserInfo {
   id: string;
   email: string;
   name: string;
   avator: string;
 }
 export const useUserStore = defineStore('user', () => {
+  const isLogin = ref(false);
   const userInfo = ref({
     id: '',
     email: '',
@@ -17,10 +18,23 @@ export const useUserStore = defineStore('user', () => {
   //
   function setUserinfo(user: UserInfo) {
     userInfo.value = user;
+    isLogin.value = true;
+  }
+
+  function loginout() {
+    isLogin.value = false;
+    userInfo.value = {
+      id: '',
+      email: '',
+      name: '',
+      avator: ''
+    };
   }
 
   return {
     userInfo,
-    setUserinfo
+    isLogin,
+    setUserinfo,
+    loginout
   };
 });

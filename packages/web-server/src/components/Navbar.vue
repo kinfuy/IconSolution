@@ -17,13 +17,10 @@
         </div>
       </div>
       <div class="icon-right common">
-        <div class="icon-avatar">
-          <!-- <img src="/壁纸小狐狸.png" alt="" /> -->
+        <div v-if="store.isLogin" class="icon-avatar">
+          <img :src="`api${store.userInfo.avator}`" alt="" />
         </div>
-        <div class="icon-person">
-          <router-link to="/homepage">个人主页</router-link>
-        </div>
-        <div class="icon-login">
+        <div v-if="!store.isLogin" class="icon-login">
           <a @click="loginRef.show()">登录</a>
           <Login ref="loginRef" />
         </div>
@@ -34,14 +31,18 @@
 
 <script>
 import { ref } from 'vue';
+import { useUserStore } from '../store/user';
 import Login from './Login.vue';
 export default {
   name: 'NavBar',
   components: { Login },
   setup() {
     const loginRef = ref(null); //相当于拿到login组件，可以调用里面的方法
+
+    const store = useUserStore();
     return {
-      loginRef
+      loginRef,
+      store
     };
   }
 };
