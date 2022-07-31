@@ -16,7 +16,8 @@
     "paths": {
       "@apis*": ["./src/apis/*"],
       "@views*": ["./src/views/*"]
-    }
+    },
+    "types": ["element-plus/global"]
   },
   "include": ["src/**/*", "typings"],
   "exclude": ["node_modules"]

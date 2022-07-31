@@ -8,90 +8,62 @@
     >
       <template #header="{ titleId, titleClass, close }">
         <div class="my-header">
-          <h4 v-if="!showMsg" :id="titleId" :class="titleClass">账号注册</h4>
-          <h4 v-if="showMsg" :id="titleId" :class="titleClass">账号登录</h4>
-          <el-button type="danger" @click="close">
-            <el-icon class="el-icon--left" />
-            ×
-          </el-button>
+          <h4 :id="titleId" :class="titleClass">
+            {{ inputType ? '账号登录' : '账号注册' }}
+          </h4>
+          <el-icon class="header-close" :size="20" color="#333" @click="close">
+            <Close />
+          </el-icon>
         </div>
       </template>
       <!-- 1，账号注册-->
-      <div v-if="!showMsg" class="icon-con">
+      <div class="icon-con">
         <!--💥 邮箱登录 -->
         <div class="icon-inputc">
-          <input
+          <el-input
             v-model="email"
             class="icon-text"
             type="text"
             placeholder="邮箱"
+            :prefix-icon="Message"
           />
         </div>
         <!-- 输入密码 -->
         <div class="icon-password-input">
-          <input
+          <el-input
             v-model="password"
             class="icon-password"
             type="password"
             placeholder="密码"
+            :prefix-icon="Key"
           />
         </div>
         <!-- 输入验证码 -->
-        <div class="icon-inputp">
-          <input
+        <div v-if="!inputType" class="icon-inputp">
+          <el-input
             v-model="code"
             class="icon-code"
             type="text"
             placeholder="验证码"
           />
           <button @click="getCode">
-            <span v-if="time == 60">获取验证码</span>
-            <span v-else>{{ time }}s</span>
+            <span v-if="countTime == 60">获取验证码</span>
+            <span v-else>{{ countTime }}s</span>
           </button>
-        </div>
-      </div>
-      <!--2，账号登录  -->
-      <div v-if="showMsg" class="icon-con">
-        <!--💥 邮箱手机号 -->
-        <div class="icon-inputc">
-          <input
-            v-model="email"
-            class="icon-text"
-            type="text"
-            placeholder="邮箱/手机号"
-          />
-        </div>
-        <!-- 密码 -->
-        <div class="icon-inputp">
-          <input
-            v-model="password"
-            class="icon-password"
-            type="password"
-            placeholder="请输入密码"
-          />
         </div>
       </div>
       <!-- 登录按钮 -->
       <div class="icon-footer">
-        <div v-if="showMsg" class="icon-log" @click="getLogin">
-          <button>登录</button>
-        </div>
-        <div v-if="!showMsg" class="icon-log" @click="getSignIn">
-          <button>注册</button>
+        <div class="icon-log" @click="handleSubmit">
+          {{ inputType ? '登录' : '注册' }}
         </div>
       </div>
       <!--  底部提示-->
       <div class="icon-other">
         <!-- 切换登录页面 -->
-        <a v-if="!showMsg" href="#" @click="handleMsg">已有账号？登录</a>
-        <!-- 切换注册页面 -->
-        <div v-if="showMsg" class="icon-more">
-          <div class="icon-top">
-            <a href="#" @click="handleMsg">账号注册</a>
-            <a href="#">忘记密码？</a>
-          </div>
-          <!-- <div class="icon-bottom">密码登录</div> -->
-        </div>
+        <span class="icon-tips" @click="handleSwitch">{{
+          inputType ? '账号注册' : '已有账号？登录'
+        }}</span>
       </div>
     </el-dialog>
   </div>
@@ -100,62 +72,68 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { ElMessage } from 'element-plus';
+import { Close, Key, Message } from '@element-plus/icons-vue';
 import { reqGetCode, reqGetLogin, reqGetSignIn } from '../apis/common';
 import { useUserStore } from '../store/user';
 import type { ResponseOption } from '../apis/common';
 export default defineComponent({
   name: 'Login',
+  components: { Close },
   setup() {
     const store = useUserStore();
     const visible = ref(false);
     const show = () => {
       visible.value = true;
     };
-    //切换登录和注册页面
-    const showMsg = ref(true);
-    function handleMsg() {
-      showMsg.value = !showMsg.value;
-    }
+
+    //切换登录和注册页
+    const inputType = ref(true); // true 登录 // fasle- 注册
+
+    const handleSwitch = () => {
+      inputType.value = !inputType.value;
+      clear();
+    };
     //💧 一。730请求注册接口
     // 1.抽取公共判断部分方便调用
     const email = ref('');
     const password = ref('');
     const code = ref('');
     // 验证邮箱
-    const reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
-    function checkParams() {
+    const checkParams = () => {
+      const reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
       if (email.value === '' || password.value === '') {
         ElMessage.error('邮箱和密码不能为空哦');
-        return;
+        return false;
       }
       if (!reg.test(email.value)) {
         ElMessage.error('邮箱格式不正确');
-        return;
+        return false;
       }
       if (password.value.length < 6 || password.value.length > 12) {
         ElMessage.error('密码长度在6-16位');
-        return;
+        return false;
       }
-    }
+      return true;
+    };
     // 2.把定时器抽取出来
-    const time = ref(60);
+    const countTime = ref(60);
     let timer: any;
-    function getTime() {
+    const getTime = () => {
       timer = setInterval(() => {
-        if (time.value !== 0) {
-          time.value--;
+        if (countTime.value !== 0) {
+          countTime.value--;
         } else {
           clearInterval(timer);
-          time.value = 60;
+          countTime.value = 60;
         }
       }, 1000);
-    }
+    };
     //730 请求验证码接口
-    function getCode() {
+    const getCode = () => {
       // 防止重复请求，先判断定时器是否还在，还在就不执行
       if (timer) return;
       //1.得到请求结果
-      checkParams();
+      if (!checkParams()) return;
       reqGetCode({ email: email.value, password: password.value }).then(
         (res: { code: string; data: any }) => {
           // eslint-disable-next-line no-debugger
@@ -167,22 +145,19 @@ export default defineComponent({
           }
         }
       );
-      /*  .catch(error => {
-          console.log(error);
-        }); */
-    }
+    };
     //🔥 注册成功后清除定时器，时间=60秒显示 获取验证码，清除input框的值
-    function clear() {
+    const clear = () => {
       clearInterval(timer);
-      time.value = 60;
+      countTime.value = 60;
       email.value = '';
       password.value = '';
       code.value = '';
-    }
+    };
     // 730请求注册接口
-    function getSignIn() {
+    const getSignIn = () => {
       // 1.判断邮箱和密码
-      checkParams();
+      if (!checkParams()) return;
       // 2.额外判断验证码是否传值
       if (code.value === '') return;
       // 后端需要接收传过去的参数email,password,code验证码
@@ -196,14 +171,14 @@ export default defineComponent({
           ElMessage.success('注册成功！');
           //🔥 注册成功后清除定时器，时间=60秒显示 获取验证码,清空密码邮箱验证码
           clear();
-          showMsg.value = true; //注册成功跳到登录界面
+          inputType.value = true;
         }
       });
-    }
+    };
     //💧二.731 请求登录接口
-    function getLogin() {
+    const getLogin = () => {
       // 判断邮箱和密码
-      checkParams();
+      if (!checkParams()) return;
       reqGetLogin({ email: email.value, password: password.value }).then(
         res => {
           store.setUserinfo(res.data);
@@ -211,23 +186,30 @@ export default defineComponent({
           ElMessage.success('登录成功');
         }
       );
-    }
+    };
+
+    const handleSubmit = () => {
+      if (inputType.value) getLogin();
+      else getSignIn();
+    };
     return {
+      Message,
+      Key,
       visible,
       show,
-      showMsg,
-      handleMsg,
+      handleSwitch,
       getCode,
       getSignIn,
       email,
       password,
       code,
-      reg,
       checkParams,
-      time,
+      countTime,
       getTime,
       clear,
-      getLogin
+      getLogin,
+      handleSubmit,
+      inputType
     };
   }
 });
@@ -235,29 +217,18 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .icon-lo {
-  /deep/.icon-dialog {
+  :deep(.icon-dialog) {
     border-radius: 5px;
+    .el-dialog__header {
+      margin-right: 0;
+    }
     .my-header {
       display: flex;
-      flex-direction: row;
       justify-content: center;
       position: relative;
-      margin-top: 20px;
-      .el-button {
-        font-size: 30px;
-        color: black;
-        background-color: #fff;
-        border: none;
+      .header-close {
         position: absolute;
-        margin-left: 335px;
-        vertical-align: middle;
-        color: #3b9a9c;
-        margin-top: -3px;
-        span {
-          i {
-            display: none;
-          }
-        }
+        right: 0;
       }
     }
     .el-dialog__body {
@@ -272,7 +243,7 @@ export default defineComponent({
       .icon-inputc,
       .icon-password-input,
       .icon-inputp {
-        width: 309px;
+        width: 300px;
         height: 41px;
         margin-top: 30px;
         font-size: 16px;
@@ -282,7 +253,6 @@ export default defineComponent({
         .icon-code {
           width: 100%;
           height: 100%;
-          padding-left: 16px;
           font-size: 16px;
         }
         button {
@@ -296,48 +266,29 @@ export default defineComponent({
           cursor: pointer;
         }
       }
-      //#region
-      // .icon-password {
-      //   width: 309px;
-      //   height: 41px;
-      //   margin-top: 30px;
-      //   font-size: 16px;
-      //   padding-left: 16px;
-      // }
-      // .icon-input {
-      //   width: 309px;
-      //   height: 41px;
-      //   .icon-text {
-      //     width: 309px;
-      //     height: 41px;
-      //     font-size: 16px;
-      //     padding-left: 16px;
-      //   }
-      // }
-      //#endregion
     }
     .icon-footer {
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
       .icon-log {
-        button {
-          width: 200px;
-          height: 41px;
-          background-color: #2694ab;
-          border: none;
-          color: #fff;
-          font-size: 16px;
-        }
+        width: 300px;
+        height: 41px;
+        background-color: #2694ab;
+        line-height: 41px;
+        text-align: center;
+        border: none;
+        color: #fff;
+        font-size: 16px;
       }
     }
     .icon-other {
-      margin-top: 25px;
-      text-indent: left;
-      a {
-        text-decoration: none;
-        margin: 0 28px;
+      margin-top: 20px;
+      margin-left: 20px;
+      .icon-tips {
+        &:hover {
+          color: #f67504;
+        }
       }
       .icon-more {
         display: flex;
