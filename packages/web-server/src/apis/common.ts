@@ -21,7 +21,11 @@ export const createIconApi = (data?: any): Promise<ResponseOption> => {
 export const reqGetCode = (data?: any): Promise<ResponseOption> => {
   return request.post('/captcha', data);
 };
-// 请求注册
+// 请求注册接口
 export const reqGetSignIn = (data?: any): Promise<ResponseOption> => {
   return request.post('/register', data);
+};
+// 请求登录接口
+export const reqGetLogin = (data?: any): Promise<ResponseOption> => {
+  return request.post('/login', data);
 };

@@ -33,7 +33,7 @@
             v-model="password"
             class="icon-password"
             type="password"
-            placeholder="输入密码"
+            placeholder="密码"
           />
         </div>
         <!-- 输入验证码 -->
@@ -64,6 +64,7 @@
         <!-- 密码 -->
         <div class="icon-inputp">
           <input
+            v-model="password"
             class="icon-password"
             type="password"
             placeholder="请输入密码"
@@ -72,7 +73,9 @@
       </div>
       <!-- 登录按钮 -->
       <div class="icon-footer">
-        <div v-if="showMsg" class="icon-log"><button>登录</button></div>
+        <div v-if="showMsg" class="icon-log" @click="getLogin">
+          <button>登录</button>
+        </div>
         <div v-if="!showMsg" class="icon-log" @click="getSignIn">
           <button>注册</button>
         </div>
@@ -97,7 +100,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { ElButton, ElDialog, ElMessage } from 'element-plus';
-import { reqGetCode, reqGetSignIn } from '../apis/common';
+import { reqGetCode, reqGetLogin, reqGetSignIn } from '../apis/common';
 import type { ResponseOption } from '../apis/common';
 export default defineComponent({
   name: 'Login',
@@ -107,18 +110,18 @@ export default defineComponent({
     const show = () => {
       visible.value = true;
     };
-    const showMsg = ref(true);
-    const email = ref('');
-    const password = ref('');
-    const code = ref('');
-    const time = ref(60);
-    // 验证邮箱
-    const reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
     //切换登录和注册页面
+    const showMsg = ref(true);
     function handleMsg() {
       showMsg.value = !showMsg.value;
     }
+    //💧 一。730请求注册接口
     // 1.抽取公共判断部分方便调用
+    const email = ref('');
+    const password = ref('');
+    const code = ref('');
+    // 验证邮箱
+    const reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
     function checkParams() {
       if (email.value === '' || password.value === '') {
         ElMessage.error('邮箱和密码不能为空哦');
@@ -134,6 +137,7 @@ export default defineComponent({
       }
     }
     // 2.把定时器抽取出来
+    const time = ref(60);
     let timer: string | number | NodeJS.Timer | undefined;
     function getTime() {
       timer = setInterval(() => {
@@ -145,22 +149,14 @@ export default defineComponent({
         }
       }, 1000);
     }
-    //🔥 注册成功后清除定时器，时间=60秒显示 获取验证码
-    function clear() {
-      clearInterval(timer);
-      time.value = 60;
-      email.value = '';
-      password.value = '';
-      code.value = '';
-    }
-    // 请求验证码接口
+    //730 请求验证码接口
     function getCode() {
       // 防止重复请求，先判断定时器是否还在，还在就不执行
       if (timer) return;
       //1.得到请求结果
       checkParams();
-      reqGetCode({ email: email.value, password: password.value })
-        .then((res: { code: string; data: any }) => {
+      reqGetCode({ email: email.value, password: password.value }).then(
+        (res: { code: string; data: any }) => {
           // eslint-disable-next-line no-debugger
           // debugger;
           if (res.code === '000000') {
@@ -168,12 +164,21 @@ export default defineComponent({
             getTime();
             // return res.data;//这里不需要获得数据，成功的回调可以不写
           }
-        })
-        .catch(error => {
+        }
+      );
+      /*  .catch(error => {
           console.log(error);
-        });
+        }); */
     }
-    // 请求注册接口
+    //🔥 注册成功后清除定时器，时间=60秒显示 获取验证码，清除input框的值
+    function clear() {
+      clearInterval(timer);
+      time.value = 60;
+      email.value = '';
+      password.value = '';
+      code.value = '';
+    }
+    // 730请求注册接口
     function getSignIn() {
       // 1.判断邮箱和密码
       checkParams();
@@ -184,23 +189,25 @@ export default defineComponent({
         email: email.value,
         password: password.value,
         code: code.value
-      })
-        .then((res: ResponseOption) => {
-          //这里res成功的类型限制也可以直接这样写，因为ResponseOption本身就是api里面给接口数据限制的类型
-          if (res.code === '000000') {
-            ElMessage.success('注册成功！');
-            //🔥 注册成功后清除定时器，时间=60秒显示 获取验证码,清空密码邮箱验证码
-            clear();
-            showMsg.value = true; //注册成功跳到登录界面
-          } else {
-            ElMessage.error(res.message);
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      }).then((res: ResponseOption) => {
+        //这里res成功的类型限制也可以直接这样写，因为ResponseOption本身就是api里面给接口数据限制的类型
+        if (res.code === '000000') {
+          ElMessage.success('注册成功！');
+          //🔥 注册成功后清除定时器，时间=60秒显示 获取验证码,清空密码邮箱验证码
+          clear();
+          showMsg.value = true; //注册成功跳到登录界面
+        }
+      });
     }
-    // 请求注册接口
+    //💧二.731 请求登录接口
+    function getLogin() {
+      // 判断邮箱和密码
+      checkParams();
+      reqGetLogin({ email: email.value, password: password.value }).then(() => {
+        // 响应拦截器配置了失败的回调 所以这里可以不写
+        ElMessage.success('登录成功');
+      });
+    }
     return {
       visible,
       show,
@@ -215,7 +222,8 @@ export default defineComponent({
       checkParams,
       time,
       getTime,
-      clear
+      clear,
+      getLogin
     };
   }
 });

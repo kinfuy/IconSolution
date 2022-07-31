@@ -9,7 +9,7 @@ const instance: AxiosInstance = axios.create({
 });
 // 取消重复请求
 const pending: Array<any> = [];
-const cancelToken = axios.CancelToken;
+const cancelToken = axios.CancelToken; //axios上面的方法：取消请求
 const removePending = (config: AxiosRequestConfig) => {
   pending.forEach((item, index) => {
     if (item.requestFlag === `${config.url}&${config.method}`) {
@@ -39,7 +39,13 @@ instance.interceptors.request.use(
 //响应拦截器
 instance.interceptors.response.use(
   (response: AxiosResponse) => {
-    return response.data;
+    //731配置失败后的消息
+    if (response.data.code === '000000') {
+      return response.data;
+    } else {
+      errorHandler(response.data.message);
+      return Promise.reject(response.data);
+    }
   },
   error => {
     if (error && error.response) {
