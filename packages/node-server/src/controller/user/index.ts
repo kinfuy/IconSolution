@@ -35,6 +35,7 @@ export const register = async (ctx: Koa.Context) => {
       name: "跳舞的小羊",
       email,
       password: md5Crypto(password),
+      avator: "/user/logo.png",
     });
     ctx.body = {
       code: RESPONSE_CODE.SUCCESS,
@@ -51,22 +52,25 @@ export const register = async (ctx: Koa.Context) => {
 export const login = async (ctx: Koa.Context) => {
   const { email, password } = ctx.state.parameter;
   const userController = new UserService();
-  userController
-    .find({ where: { email, password: md5Crypto(password) } })
-    .then((res) => {
-      if (res.length > 0) {
-        if (ctx.session) ctx.session.userinfo = res[0];
-        ctx.body = {
-          code: RESPONSE_CODE.SUCCESS,
-          message: "注册成功",
-        };
-      } else {
-        ctx.body = {
-          code: RESPONSE_CODE.ERROR_FAIL,
-          message: "用户不存在",
-        };
-      }
-    });
+  const user = await userController.find({
+    select: ["id", "email", "name", "avator"],
+    where: { email, password: md5Crypto(password) },
+  });
+  if (user.length > 0) {
+    if (ctx.session) {
+      ctx.session.userinfo = user[0];
+    }
+    ctx.body = {
+      code: RESPONSE_CODE.SUCCESS,
+      message: "登录成功",
+      data: user[0],
+    };
+  } else {
+    ctx.body = {
+      code: RESPONSE_CODE.ERROR_FAIL,
+      message: "用户不存在",
+    };
+  }
 };
 
 export const getCaptcha = async (ctx: Koa.Context) => {

@@ -47,8 +47,8 @@ const routes: Array<RouteDecoratorConfig> = [
     paramVerify: [
       {
         require: true,
-        key: "username",
-        errorMsg: "username is required",
+        key: "email",
+        errorMsg: "email is required",
       },
       {
         key: "password",

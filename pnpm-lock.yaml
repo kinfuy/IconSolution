@@ -20,7 +20,6 @@ importers:
     specifiers:
       '@types/fs-extra': ^9.0.13
       '@types/koa': ^2.13.4
-      '@types/koa-bodyparser': ^4.3.4
       '@types/koa-router': ^7.4.4
       '@types/koa-session': ^5.10.4
       '@types/koa-static': ^4.0.2
@@ -32,7 +31,7 @@ importers:
       fast-glob: ^3.2.11
       fs-extra: ^10.1.0
       koa: ^2.13.4
-      koa-bodyparser: ^4.3.0
+      koa-body: ^5.0.0
       koa-router: ^11.0.1
       koa-session: ^6.2.0
       koa-static: ^5.0.0
@@ -50,7 +49,7 @@ importers:
       fast-glob: 3.2.11
       fs-extra: 10.1.0
       koa: 2.13.4
-      koa-bodyparser: 4.3.0
+      koa-body: 5.0.0
       koa-router: 11.0.1
       koa-session: 6.2.0
       koa-static: 5.0.0
@@ -65,14 +64,12 @@ importers:
     devDependencies:
       '@types/fs-extra': 9.0.13
       '@types/koa': 2.13.5
-      '@types/koa-bodyparser': 4.3.7
       '@types/koa-router': 7.4.4
       '@types/koa-session': 5.10.6
       '@types/koa-static': 4.0.2
       '@types/koa2-cors': 2.0.2
       '@types/node': 18.6.2
       '@types/nodemailer': 6.4.4
-
       '@types/prettier': 2.6.4
       nodemon: 2.0.19
 
@@ -337,7 +334,6 @@ packages:
       vue: 3.2.37
     dev: false
 
-
   /@eslint/eslintrc/1.3.0:
     resolution: {integrity: sha512-UWW0TMTmk2d7hLcWD1/e2g5HDM/HQ3csaLSqXCfqwh4uNDuNqlaKWXmEsL4Cs41Z0KnILNvwbHAah3C2yt06kw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -487,6 +483,12 @@ packages:
       '@types/serve-static': 1.13.10
     dev: true
 
+  /@types/formidable/2.0.5:
+    resolution: {integrity: sha512-uvMcdn/KK3maPOaVUAc3HEYbCEhjaGFwww4EsX6IJfWIJ1tzHtDHczuImH3GKdusPnAAmzB07St90uabZeCKPA==}
+    dependencies:
+      '@types/node': 18.6.2
+    dev: false
+
   /@types/fs-extra/9.0.13:
     resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
     dependencies:
@@ -511,12 +513,6 @@ packages:
 
   /@types/keygrip/1.0.2:
     resolution: {integrity: sha512-GJhpTepz2udxGexqos8wgaBx4I/zWIDPh/KOGEwAqtuGDkOUJu5eFvwmdBX4AmB8Odsr+9pHCQqiAqDL/yKMKw==}
-    dev: true
-
-  /@types/koa-bodyparser/4.3.7:
-    resolution: {integrity: sha512-21NhEp7LjZm4zbNV5alHHmrNY4J+S7B8lYTO6CzRL8ShTMnl20Gd14dRgVhAxraLaW5iZMofox+BycbuiDvj2Q==}
-    dependencies:
-      '@types/koa': 2.13.5
     dev: true
 
   /@types/koa-compose/3.2.5:
@@ -603,7 +599,6 @@ packages:
       '@types/node': 18.6.2
     dev: true
 
-
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
     dev: true
@@ -638,7 +633,6 @@ packages:
   /@types/web-bluetooth/0.0.14:
     resolution: {integrity: sha512-5d2RhCard1nQUC3aHcq/gHzWYO6K0WJmAbjO7mQJgCQKtZpgXxv1rOM6O/dBDhDYYVutk1sciOgNSe+5YyfM8A==}
     dev: false
-
 
   /@typescript-eslint/eslint-plugin/5.31.0_d5zwcxr4bwkhmuo464cb3a2puu:
     resolution: {integrity: sha512-VKW4JPHzG5yhYQrQ1AzXgVgX8ZAJEvCz0QI6mLRX4tf7rnFfh5D8SKm0Pq6w5PyNfAWJk6sv313+nEt3ohWMBQ==}
@@ -1039,6 +1033,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /asap/2.0.6:
+    resolution: {integrity: sha512-BSHWgDSAiKs50o2Re8ppvp3seVHXSRM44cdSsT9FfNEUUZLOGWVCsiWaRPWM1Znn+mqZ1OfVZ3z3DWEzSp7hRA==}
+    dev: false
+
   /astral-regex/2.0.0:
     resolution: {integrity: sha512-Z7tMw1ytTXt5jqMcOP+OQteU1VuNK9Y02uuJtKQ1Sv69jXQKKg5cibLwGJow8yzZP+eAc18EmLGPal0bp36rvQ==}
     engines: {node: '>=8'}
@@ -1310,8 +1308,8 @@ packages:
       wrap-ansi: 7.0.0
     dev: false
 
-  /co-body/6.1.0:
-    resolution: {integrity: sha512-m7pOT6CdLN7FuXUcpuz/8lfQ/L77x8SchHCF4G0RBTJO20Wzmhn5Sp4/5WsKy8OSpifBSUrmg83qEqaDHdyFuQ==}
+  /co-body/5.2.0:
+    resolution: {integrity: sha512-sX/LQ7LqUhgyaxzbe7IqwPeTr2yfpfUIQ/dgpKo6ZI4y4lpQA0YxAomWIY+7I7rHWcG02PG+OuPREzMW/5tszQ==}
     dependencies:
       inflation: 2.0.0
       qs: 6.11.0
@@ -1439,10 +1437,6 @@ packages:
     dependencies:
       is-what: 3.14.1
     dev: true
-
-  /copy-to/2.0.1:
-    resolution: {integrity: sha512-3DdaFaU/Zf1AnpLiFDeNCD4TOWe3Zl2RZaTzUvWiIk5ERzcCodOE20Vqq4fzCbNoHURFHT4/us/Lfq+S2zyY4w==}
-    dev: false
 
   /core-js/3.24.0:
     resolution: {integrity: sha512-IeOyT8A6iK37Ep4kZDD423mpi6JfPRoPUdQwEWYiGolvn4o6j2diaRzNfDfpTdu3a5qMbrGUzKUpYpRY8jXCkQ==}
@@ -1601,6 +1595,13 @@ packages:
   /destroy/1.2.0:
     resolution: {integrity: sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==}
     engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
+    dev: false
+
+  /dezalgo/1.0.3:
+    resolution: {integrity: sha512-K7i4zNfT2kgQz3GylDw40ot9GAE47sFZ9EXHFSPP6zONLgH6kWXE0KWJchkbQJLBkRazq4APwZ4OwiFFlT95OQ==}
+    dependencies:
+      asap: 2.0.6
+      wrappy: 1.0.2
     dev: false
 
   /diff/4.0.2:
@@ -2463,6 +2464,15 @@ packages:
       mime-types: 2.1.35
     dev: false
 
+  /formidable/2.0.1:
+    resolution: {integrity: sha512-rjTMNbp2BpfQShhFbR3Ruk3qk2y9jKpvMW78nJgx8QKtxjDVrwbZG+wvDOmVbifHyOUOQJXxqEy6r0faRrPzTQ==}
+    dependencies:
+      dezalgo: 1.0.3
+      hexoid: 1.0.0
+      once: 1.4.0
+      qs: 6.9.3
+    dev: false
+
   /fresh/0.5.2:
     resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
     engines: {node: '>= 0.6'}
@@ -2656,6 +2666,11 @@ packages:
     dependencies:
       capital-case: 1.0.4
       tslib: 2.4.0
+    dev: false
+
+  /hexoid/1.0.0:
+    resolution: {integrity: sha512-QFLV0taWQOZtvIRIAdBChesmogZrtuXvVWsFHZTk2SU+anspqZ2vMnoLg7IE1+Uk16N19APic1BuF8bC8c2m5g==}
+    engines: {node: '>=8'}
     dev: false
 
   /highlight.js/10.7.3:
@@ -3089,12 +3104,12 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /koa-bodyparser/4.3.0:
-    resolution: {integrity: sha512-uyV8G29KAGwZc4q/0WUAjH+Tsmuv9ImfBUF2oZVyZtaeo0husInagyn/JH85xMSxM0hEk/mbCII5ubLDuqW/Rw==}
-    engines: {node: '>=8.0.0'}
+  /koa-body/5.0.0:
+    resolution: {integrity: sha512-nHwEODrQGiyKBILCWO8QSS40C87cKr2cp3y/Cw8u9Z8w5t0CdSkGm3+y9WK5BIAlPpo9tTw5RtSbxpVyG79vmw==}
     dependencies:
-      co-body: 6.1.0
-      copy-to: 2.0.1
+      '@types/formidable': 2.0.5
+      co-body: 5.2.0
+      formidable: 2.0.1
     dev: false
 
   /koa-compose/4.1.0:
@@ -3301,6 +3316,7 @@ packages:
       lodash: 4.17.21
       lodash-es: 4.17.21
     dev: false
+
   /lodash.merge/4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: true
@@ -3963,6 +3979,11 @@ packages:
     engines: {node: '>=0.6'}
     dependencies:
       side-channel: 1.0.4
+    dev: false
+
+  /qs/6.9.3:
+    resolution: {integrity: sha512-EbZYNarm6138UKKq46tdx08Yo/q9ZhFoAXAI1meAFd2GtbRDhbZY2WQSICskT0c5q99aFzLG1D4nvTk9tqfXIw==}
+    engines: {node: '>=0.6'}
     dev: false
 
   /queue-microtask/1.2.3:
