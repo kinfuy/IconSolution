@@ -99,13 +99,14 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { ElButton, ElDialog, ElMessage } from 'element-plus';
+import { ElMessage } from 'element-plus';
 import { reqGetCode, reqGetLogin, reqGetSignIn } from '../apis/common';
+import { useUserStore } from '../store/user';
 import type { ResponseOption } from '../apis/common';
 export default defineComponent({
   name: 'Login',
-  components: { ElButton, ElDialog },
   setup() {
+    const store = useUserStore();
     const visible = ref(false);
     const show = () => {
       visible.value = true;
@@ -138,7 +139,7 @@ export default defineComponent({
     }
     // 2.把定时器抽取出来
     const time = ref(60);
-    let timer: string | number | NodeJS.Timer | undefined;
+    let timer: any;
     function getTime() {
       timer = setInterval(() => {
         if (time.value !== 0) {
@@ -203,10 +204,13 @@ export default defineComponent({
     function getLogin() {
       // 判断邮箱和密码
       checkParams();
-      reqGetLogin({ email: email.value, password: password.value }).then(() => {
-        // 响应拦截器配置了失败的回调 所以这里可以不写
-        ElMessage.success('登录成功');
-      });
+      reqGetLogin({ email: email.value, password: password.value }).then(
+        res => {
+          store.setUserinfo(res.data);
+          // 响应拦截器配置了失败的回调 所以这里可以不写
+          ElMessage.success('登录成功');
+        }
+      );
     }
     return {
       visible,
@@ -231,7 +235,7 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .icon-lo {
-  /deep/.icon-dialog {
+  :deep(.icon-dialog) {
     border-radius: 5px;
     .my-header {
       display: flex;
