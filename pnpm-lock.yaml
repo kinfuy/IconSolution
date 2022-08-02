@@ -85,6 +85,7 @@ importers:
       eslint-plugin-import: ^2.26.0
       less: ^4.1.3
       pinia: ^2.0.14
+      pinia-plugin-persistedstate: ^2.0.1
       prettier: ^2.7.1
       typescript: ^4.7.4
       vite: ^2.9.13
@@ -95,6 +96,7 @@ importers:
       axios: 0.27.2
       element-plus: 2.2.11_vue@3.2.37
       pinia: 2.0.17_j6bzmzd4ujpabbp5objtwxyjp4
+      pinia-plugin-persistedstate: 2.0.1_pinia@2.0.17
       vue: 3.2.37
       vue-router: 4.1.3_vue@3.2.37
     devDependencies:
@@ -3896,6 +3898,14 @@ packages:
     engines: {node: '>=6'}
     dev: true
     optional: true
+
+  /pinia-plugin-persistedstate/2.0.1_pinia@2.0.17:
+    resolution: {integrity: sha512-ch9tbtBVplUfIFCg3jk3HMeWNFDIfqAvTpkiPzjeeuB8CTV+Nr+FVvGIDs3O0h3khC3Mm2ITSOVCKEWslBFZaw==}
+    peerDependencies:
+      pinia: ^2.0.0
+    dependencies:
+      pinia: 2.0.17_j6bzmzd4ujpabbp5objtwxyjp4
+    dev: false
 
   /pinia/2.0.17_j6bzmzd4ujpabbp5objtwxyjp4:
     resolution: {integrity: sha512-AtwLwEWQgIjofjgeFT+nxbnK5lT2QwQjaHNEDqpsi2AiCwf/NY78uWTeHUyEhiiJy8+sBmw0ujgQMoQbWiZDfA==}
