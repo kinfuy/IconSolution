@@ -1,5 +1,5 @@
 <template>
-  <div class="icon-library">团队</div>
+  <div class="icon-team">团队</div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
