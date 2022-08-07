@@ -30,14 +30,9 @@ app.use(
   koaBody({
     multipart: true,
     formidable: {
-      uploadDir: join(__dirname, "../source"),
+      uploadDir: join(__dirname, "../source/temp"),
       keepExtensions: true,
-      maxFieldsSize: 2 * 1024 * 1024, // 文件上传大小
-      onFileBegin: (name, file) => {
-        // 文件上传前的设置
-        console.log(`name: ${name}`);
-        console.log(file);
-      },
+      maxFieldsSize: 2 * 1024 * 1024,
     },
   })
 );

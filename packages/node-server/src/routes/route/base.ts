@@ -1,4 +1,5 @@
 import { getCaptcha, login, register } from "../../controller/user";
+import { uploadfile } from "../../controller/source";
 import type { RouteDecoratorConfig } from "../../type/route";
 const prefix = "";
 const routes: Array<RouteDecoratorConfig> = [
@@ -82,9 +83,7 @@ const routes: Array<RouteDecoratorConfig> = [
   {
     routerPath: "/uploadfile",
     method: "post",
-    controller: (ctx) => {
-      ctx.body = "ok";
-    },
+    controller: uploadfile,
   },
 ];
 export const BaseRouter = {

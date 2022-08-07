@@ -10,5 +10,11 @@ export class Source extends BaseEntity {
   path: string;
 
   @Column()
-  type: number;
+  originName: string;
+
+  @Column()
+  name: string;
+
+  @Column()
+  type: string;
 }
