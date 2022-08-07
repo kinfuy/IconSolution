@@ -5,6 +5,12 @@ export interface ResponseOption {
   message: string;
   data: any;
 }
+// 807🔥定义上传文件请求头
+const defaultFileHeader = {
+  headers: {
+    'Content-Type': 'multipart/form-data' //类型
+  }
+};
 //🌸data?代表data可传可不传，any是任意类型
 export const buildGenerateApi = (data?: any): Promise<ResponseOption> => {
   return request.post('/pkg/build', data);
@@ -28,4 +34,11 @@ export const reqGetSignIn = (data?: any): Promise<ResponseOption> => {
 // 请求登录接口
 export const reqGetLogin = (data?: any): Promise<ResponseOption> => {
   return request.post('/login', data);
+};
+// 上传图标页面-请求上传文件接口
+export const uploadfileApi = (
+  data: any,
+  config = defaultFileHeader
+): Promise<ResponseOption> => {
+  return request.post('/uploadfile', data, config);
 };

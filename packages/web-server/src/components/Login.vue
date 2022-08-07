@@ -93,7 +93,7 @@ export default defineComponent({
       inputType.value = !inputType.value;
       clear();
     };
-    //💧 一。730请求注册接口
+    //🌼一730请求注册接口
     // 1.抽取公共判断部分方便调用
     const email = ref('');
     const password = ref('');
@@ -115,6 +115,7 @@ export default defineComponent({
       }
       return true;
     };
+
     // 2.把定时器抽取出来
     const countTime = ref(60);
     let timer: any;
@@ -128,7 +129,8 @@ export default defineComponent({
         }
       }, 1000);
     };
-    //730 请求验证码接口
+
+    //🌼730 请求验证码接口
     const getCode = () => {
       // 防止重复请求，先判断定时器是否还在，还在就不执行
       if (timer) return;
@@ -146,6 +148,7 @@ export default defineComponent({
         }
       );
     };
+
     //🔥 注册成功后清除定时器，时间=60秒显示 获取验证码，清除input框的值
     const clear = () => {
       clearInterval(timer);
@@ -154,7 +157,7 @@ export default defineComponent({
       password.value = '';
       code.value = '';
     };
-    // 730请求注册接口
+    // 🌼730请求注册接口
     const getSignIn = () => {
       // 1.判断邮箱和密码
       if (!checkParams()) return;
@@ -175,19 +178,19 @@ export default defineComponent({
         }
       });
     };
-    //💧二.731 请求登录接口
+    //🌼二.731 请求登录接口
     const getLogin = () => {
       // 判断邮箱和密码
       if (!checkParams()) return;
       reqGetLogin({ email: email.value, password: password.value }).then(
         res => {
-          store.setUserinfo(res.data);
+          store.setUserinfo(res.data); //里面有头像信息等
           // 响应拦截器配置了失败的回调 所以这里可以不写
           ElMessage.success('登录成功');
         }
       );
     };
-
+    // 提交登录还是注册
     const handleSubmit = () => {
       if (inputType.value) getLogin();
       else getSignIn();

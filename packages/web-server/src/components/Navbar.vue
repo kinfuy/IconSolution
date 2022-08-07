@@ -17,11 +17,20 @@
         </div>
       </div>
       <div class="icon-right common">
+        <!--803 购物车 -->
+        <div class="icon-shop">
+          <el-icon :size="25" @click="shopCarRef.showcar()"
+            ><ShoppingCartFull
+          /></el-icon>
+          <ShopCar ref="shopCarRef" />
+        </div>
+        <!-- 文件上传 -->
         <div class="icon-upload">
           <router-link to="/upload"
             ><el-icon :size="25"><MostlyCloudy /></el-icon
           ></router-link>
         </div>
+        <!-- 登录成功后的个人头像 -->
         <!-- 先写死方便调试 -->
         <!-- <div class="icon-avatar"> -->
         <div class="icon-avatar">
@@ -37,6 +46,7 @@
             </template>
           </el-dropdown>
         </div>
+        <!-- 登录 -->
         <div v-if="!store.isLogin" class="icon-login">
           <!-- 点击展示模态框 -->
           <a @click="loginRef.show()">登录</a>
@@ -49,19 +59,21 @@
 
 <script>
 import { ref } from 'vue';
-import { MostlyCloudy } from '@element-plus/icons-vue';
+import { MostlyCloudy, ShoppingCartFull } from '@element-plus/icons-vue';
 import { useUserStore } from '../store/user';
 import Login from './Login.vue';
+import ShopCar from './ShopCar.vue';
 
 export default {
   name: 'NavBar',
-  components: { Login, MostlyCloudy },
+  components: { Login, MostlyCloudy, ShoppingCartFull, ShopCar },
   setup() {
     const loginRef = ref(null); //<Login ref="loginRef" />相当于拿到login组件，可以调用里面的方法
-
+    const shopCarRef = ref(null);
     const store = useUserStore();
     return {
       loginRef,
+      shopCarRef,
       store
     };
   }
@@ -129,10 +141,11 @@ export default {
       }
     }
     .icon-right {
-      color: #fff;
       cursor: pointer;
-      .icon-upload {
+      .icon-upload,
+      .icon-shop {
         margin-top: 8px;
+        margin-left: 40px;
       }
       .icon-avatar {
         margin: 0 30px;
