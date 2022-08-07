@@ -17,10 +17,28 @@
         </div>
       </div>
       <div class="icon-right common">
-        <div v-if="store.isLogin" class="icon-avatar">
-          <img :src="`api${store.userInfo.avator}`" alt="" />
+        <div class="icon-upload">
+          <router-link to="/upload"
+            ><el-icon :size="25"><MostlyCloudy /></el-icon
+          ></router-link>
+        </div>
+        <!-- 先写死方便调试 -->
+        <!-- <div class="icon-avatar"> -->
+        <div class="icon-avatar">
+          <!-- 🔥点击图片才出现下拉框 -->
+          <el-dropdown v-if="store.isLogin" trigger="click">
+            <img :src="`api${store.userInfo.avator}`" alt="" />
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item>我的主页</el-dropdown-item>
+                <el-dropdown-item>我的图标</el-dropdown-item>
+                <el-dropdown-item divided>退出登录</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
         </div>
         <div v-if="!store.isLogin" class="icon-login">
+          <!-- 点击展示模态框 -->
           <a @click="loginRef.show()">登录</a>
           <Login ref="loginRef" />
         </div>
@@ -31,13 +49,15 @@
 
 <script>
 import { ref } from 'vue';
+import { MostlyCloudy } from '@element-plus/icons-vue';
 import { useUserStore } from '../store/user';
 import Login from './Login.vue';
+
 export default {
   name: 'NavBar',
-  components: { Login },
+  components: { Login, MostlyCloudy },
   setup() {
-    const loginRef = ref(null); //相当于拿到login组件，可以调用里面的方法
+    const loginRef = ref(null); //<Login ref="loginRef" />相当于拿到login组件，可以调用里面的方法
 
     const store = useUserStore();
     return {
@@ -49,6 +69,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.example-showcase .el-dropdown-link {
+  cursor: pointer;
+  color: var(--el-color-primary);
+  display: flex;
+  align-items: center;
+}
 .icon-nav {
   position: relative;
   width: 100%;
@@ -99,18 +125,17 @@ export default {
         li {
           list-style: none;
           margin: 0 30px;
-          a {
-            text-decoration: none;
-            color: black;
-          }
         }
       }
     }
     .icon-right {
       color: #fff;
       cursor: pointer;
+      .icon-upload {
+        margin-top: 8px;
+      }
       .icon-avatar {
-        margin-right: 20px;
+        margin: 0 30px;
         img {
           width: 25px;
           height: 25px;
@@ -118,15 +143,14 @@ export default {
           vertical-align: middle;
         }
       }
-      .icon-person,
       .icon-login {
         margin: 0 45px 0 0;
-        a {
-          text-decoration: none;
-          color: black;
-        }
       }
     }
   }
+}
+a {
+  text-decoration: none;
+  color: black;
 }
 </style>
