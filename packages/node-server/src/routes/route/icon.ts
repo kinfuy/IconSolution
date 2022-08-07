@@ -29,6 +29,25 @@ const routes: Array<RouteDecoratorConfig> = [
         errorMsg: "path is required",
         require: true,
       },
+      {
+        key: "description",
+        errorMsg: "description is required",
+        require: true,
+      },
+      {
+        key: "keywords",
+        errorMsg: "keywords is required",
+        require: true,
+        validator: (value) => {
+          return new Promise((resolve, reject) => {
+            if (typeof value.keywords === "string") {
+              resolve(true);
+            } else {
+              reject("keywords is string");
+            }
+          });
+        },
+      },
     ],
   },
 ];

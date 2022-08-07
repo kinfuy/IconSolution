@@ -3,7 +3,7 @@ import { RESPONSE_CODE } from "../../libs/enum";
 import { SourceService } from "../../database/services";
 import type Koa from "koa";
 
-const UPLOAD_FILE_DEFAULT_PATH = "source/temp";
+const UPLOAD_FILE_DEFAULT_PATH = "temp";
 export const uploadfile = async (ctx: Koa.Context) => {
   if (!ctx.request.files) {
     ctx.body = {
