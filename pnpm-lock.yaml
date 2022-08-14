@@ -6,13 +6,13 @@ importers:
     specifiers:
       '@commitlint/cli': ^9.1.2
       '@commitlint/config-conventional': ^9.1.2
-      changeloger: ^0.0.6
+      changeloger: ^0.1.0
       husky: ^8.0.0
       lint-staged: ^13.0.0
     devDependencies:
       '@commitlint/cli': 9.1.2
       '@commitlint/config-conventional': 9.1.2
-      changeloger: 0.0.6
+      changeloger: 0.1.0
       husky: 8.0.1
       lint-staged: 13.0.3
 
@@ -1217,8 +1217,8 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /changeloger/0.0.6:
-    resolution: {integrity: sha512-wxrf47LeawUXdbDFnD7FUZoPjlF5yfCaJERK8AmxeaH4NN5awvGXgyTDIlv8YHGblqkBeMPROn4t7MPKB8pMyg==}
+  /changeloger/0.1.0:
+    resolution: {integrity: sha512-o3tkYr4pakB0R9Ct0UcxY2z9ZgCkLV3K2V3gDKAN/dH45272qUKbbdNKyLTnZ8xnG6qHOLNMs/yrAHbbRu3Feg==}
     hasBin: true
     dependencies:
       execa: 5.0.1

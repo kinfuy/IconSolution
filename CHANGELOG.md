@@ -1,5 +1,4 @@
-### ✨ Features | 新功能
-
+## What's Changed
   - Feat: init ([1c5e870](https://github.com/alqmc/IconSolution/commit/1c5e870))
   - Feat: serve ([2cb139d](https://github.com/alqmc/IconSolution/commit/2cb139d))
   - Feat: server ([375ab18](https://github.com/alqmc/IconSolution/commit/375ab18))
@@ -28,9 +27,10 @@
   - Feat: user login ([a545544](https://github.com/alqmc/IconSolution/commit/a545544))
   - Feat: fixed ([8805b84](https://github.com/alqmc/IconSolution/commit/8805b84))
   - Feat: fixed ([1df9b25](https://github.com/alqmc/IconSolution/commit/1df9b25))
-
-### 🐛 Bug Fixes | Bug 修复
-
+  - Feat: upload ([5cc30bb](https://github.com/alqmc/IconSolution/commit/5cc30bb))
+  - Feat: uploadfile ([a0d8f36](https://github.com/alqmc/IconSolution/commit/a0d8f36))
+  - Feat: create icon ([950a905](https://github.com/alqmc/IconSolution/commit/950a905))
+  - Feat: upload ([ec27049](https://github.com/alqmc/IconSolution/commit/ec27049))
   - Fix: deatil ([f12b0c6](https://github.com/alqmc/IconSolution/commit/f12b0c6))
   - Fix: less ([d0adee9](https://github.com/alqmc/IconSolution/commit/d0adee9))
   - Fix: less ([dbd9c79](https://github.com/alqmc/IconSolution/commit/dbd9c79))
@@ -39,14 +39,10 @@
   - Fix: detail ([a099138](https://github.com/alqmc/IconSolution/commit/a099138))
   - Fix: detail ([f2f6b9c](https://github.com/alqmc/IconSolution/commit/f2f6b9c))
   - Fix: detail ([3e54275](https://github.com/alqmc/IconSolution/commit/3e54275))
-
-### ✅ Tests | 测试
-
+  - Fix: pinia ([6db6c45](https://github.com/alqmc/IconSolution/commit/6db6c45))
+  - Fix: detail ([29d89fc](https://github.com/alqmc/IconSolution/commit/29d89fc))
   - Test: git ([95fba4a](https://github.com/alqmc/IconSolution/commit/95fba4a))
   - Test: git ([1d5b5ca](https://github.com/alqmc/IconSolution/commit/1d5b5ca))
-
-### 💄 Styles | 风格
-
   - Style: fix ([992f73b](https://github.com/alqmc/IconSolution/commit/992f73b))
 
 ### ❤️  Contributors

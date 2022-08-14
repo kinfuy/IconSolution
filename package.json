@@ -15,7 +15,7 @@
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
     "@commitlint/config-conventional": "^9.1.2",
-    "changeloger": "^0.0.6",
+    "changeloger": "^0.1.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.0.0"
   }

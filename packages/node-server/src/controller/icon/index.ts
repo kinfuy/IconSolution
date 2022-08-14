@@ -25,7 +25,6 @@ export const createIcon = async (ctx: Koa.Context) => {
       message: "成功",
     };
   } catch (error) {
-    console.log("log=>index=>28:error:%o", error);
     ctx.body = {
       code: RESPONSE_CODE.ERROR_FAIL,
       message: "失败",
