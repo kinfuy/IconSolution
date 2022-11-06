@@ -14,10 +14,6 @@ export const createGenerateApi = (data?: any): Promise<ResponseOption> => {
   return request.post('/pkg/create', data);
 };
 
-
-export const createIconApi = (data?: any): Promise<ResponseOption> => {
-  return request.post('/icon/create', data);
-};
 // 请求验证码
 export const reqGetCode = (data?: any): Promise<ResponseOption> => {
   return request.post('/captcha', data);

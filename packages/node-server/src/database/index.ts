@@ -1,14 +1,14 @@
-import 'reflect-metadata';
-import { DataSource } from 'typeorm';
-import { iconPkg, Icons, User, Task } from './entity';
+import "reflect-metadata";
+import { DataSource } from "typeorm";
+import { Icons, Task, User, iconPkg } from "./entity";
 
 export const AppDataSource = new DataSource({
-  type: 'mysql',
-  host: 'localhost',
+  type: "mysql",
+  host: "localhost",
   port: 3306,
-  username: 'root',
-  password: '19980518',
-  database: 'iconServer',
+  username: "root",
+  password: "19980918",
+  database: "iconServer",
   entities: [iconPkg, Icons, User, Task],
   synchronize: false,
   logging: false,
